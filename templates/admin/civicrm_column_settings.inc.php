@@ -1,25 +1,26 @@
 <?php defined('ABSPATH') or die('Access denied.'); ?>
-
-<div class="col-sm-6">
-  <h4 class="c-title-color m-b-2"><?php _e('Content Replacement', 'wpcivicrm-datatable'); ?></h4>
-  <div class="form-group">
-    <div class="toggle-switch">
-      <input id="wdt-column-civicrm_replace_content_enable" type="checkbox" />
-      <label for="wdt-column-civicrm_replace_content_enable" class="ts-label"><?php _e('Enable content replacement', 'wpcivicrm-datatable'); ?></label>
-    </div>
-  </div>
-  <div id="civicrm_replace_content_div" class="hidden">
-    <h4 class="c-title-color m-b-2"><?php _e('Content Replacement', 'wpcivicrm-datatable'); ?></h4>
-    <div class="form-group">
-        <div class="fg-line">
-            <input type="text" class="form-control input-sm" id="wdt-column-civicrm_replace_content" value="">
+<div class="row" id="wpcivicrm-datatable-columnsetting">
+    <div class="col-sm-6">
+      <h4 class="c-title-color m-b-2"><?php _e('Content Replacement', 'wpcivicrm-datatable'); ?></h4>
+      <div class="form-group">
+        <div class="toggle-switch">
+          <input id="wdt-column-civicrm_replace_content_enable" type="checkbox" />
+          <label for="wdt-column-civicrm_replace_content_enable" class="ts-label"><?php _e('Enable content replacement', 'wpcivicrm-datatable'); ?></label>
         </div>
+      </div>
+      <div id="civicrm_replace_content_div" class="hidden">
+        <h4 class="c-title-color m-b-2"><?php _e('Content Replacement', 'wpcivicrm-datatable'); ?></h4>
+        <div class="form-group">
+            <div class="fg-line">
+                <input type="text" class="form-control input-sm" id="wdt-column-civicrm_replace_content" value="">
+            </div>
+        </div>
+      <div class="fg-line">
+          <h4><?php _e('Content Replacement Tokens', 'wpcivicrm-datatable'); ?></h4>
+          <p id="wdt-column-civicrm_replace_content_tokens"></p>
+      </div>
+      </div>
     </div>
-  <div class="fg-line">
-      <h4><?php _e('Content Replacement Tokens', 'wpcivicrm-datatable'); ?></h4>
-      <p id="wdt-column-civicrm_replace_content_tokens"></p>
-  </div>
-  </div>
 </div>
 
 <script type="text/javascript">
@@ -91,7 +92,9 @@
             break;
           }
         }
-      })
+      });
+
+      $('#wpcivicrm-datatable-columnsetting').appendTo('#column-display-settings');
     });
 })(jQuery);
 </script>

@@ -97,8 +97,10 @@ class WPCivicrm_Datatable {
     $reply = wpcivicrm_datatable_api($config->entity, $config->action, $api_params, $options, $config->profile);
     $data = array();
     foreach($reply['values'] as $row) {
-      $data[] = array_merge($defaults, $row);
+      $row = array_merge($defaults, $row);
+      $data[] = $row;
     }
+    $data = apply_filters('wpcivicrm_datatable_alter_data', $data, $data_table);
     $data_table->arrayBasedConstruct($data, $datatable_params);
   }
 

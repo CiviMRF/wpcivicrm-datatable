@@ -39,3 +39,9 @@ add_filter('cf_civicrm_formprocessor_get_profiles', function($profiles) {
 function my_profile_type_api_function($entity, $action, $params, $options, $profile_id) {
   // Call the civicrm api your way.
 }
+
+add_filter('wpcivicrm_datatable_alter_data', function($data, WPDataTable $data_table) {
+  // Do whatever you want with the data.
+  // This filter is called just before the data is passed to the WPDataTable
+  return $data;
+}, 10, 2);
