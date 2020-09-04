@@ -69,18 +69,28 @@ class WPCivicrm_Datatable {
    * @param $params
    */
   public static function getData(WPDataTable $data_table, $content, $datatable_params) {
+    $defaults = array();
     $config = json_decode($content);
     $api_params = ['sequential' => 1];
+    if (!isset($config->filters)) {
+      $config->filters = array();
+    }
     foreach($config->filters as $filter) {
       if (isset($_GET[$field['name']])) {
         $api_params[$filter] = $_GET[$filter];
       }
+    }
+    if (!isset($config->columns)) {
+      $config->columns = array();
     }
     foreach($config->columns as $fieldName => $title) {
       if (!isset($params['columnTitles'][$fieldName])) {
         $datatable_params['columnTitles'][$fieldName] = $title;
         $defaults[$fieldName] = '';
       }
+    }
+    if (!isset($config->columnTypes)) {
+      $config->columnTypes = array();
     }
     foreach($config->columnTypes as $fieldName => $type) {
       if (!isset($params['data_types'][$fieldName])) {

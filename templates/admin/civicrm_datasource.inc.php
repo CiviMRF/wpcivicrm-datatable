@@ -1,6 +1,6 @@
 <?php defined('ABSPATH') or die('Access denied.'); ?>
 
-<div class="col-sm-6 civicrm-block">
+<div class="col-sm-6 civicrm-block hidden">
   <h4 class="c-title-color m-b-2">
     <?php _e('Connection Profile', 'wpcivicrm-datatable'); ?>
   </h4>
@@ -42,6 +42,9 @@
     $('#wdt-table-type').on('change', function() {
       var type = $('#wdt-table-type').val();
       if (!type) {
+        if (typeof(wpdatatable_init_config) === 'undefined') {
+          return;
+        }
         type = wpdatatable_init_config.table_type;
       }
       if (type == 'civicrm') {
@@ -59,12 +62,15 @@
 
     function updateContent() {
       config.profile = $('#wdt-civicrm-profile').val();
+      if (config.profile == null) {
+        config.profile = $('#wdt-civicrm-profile option:first-child').val();
+      }
       config.entity = $('#wdt-civicrm-entity').val();
       config.action = $('#wdt-civicrm-action').val();
-      if (wpdatatable_config === undefined) {
+      if (typeof(wpdatatable_config) === 'undefined') {
         return;
       }
-      wpdatatable_config.content = JSON.stringify(config);
+      wpdatatable_config.setContent(JSON.stringify(config));
     }
 
     function clearContent() {
@@ -79,6 +85,9 @@
 
     function loadConfig() {
       var content;
+      if (typeof(wpdatatable_init_config) === 'undefined') {
+        return;
+      }
       if (wpdatatable_init_config) {
         content = wpdatatable_init_config.content;
       }

@@ -1,5 +1,5 @@
 <?php defined('ABSPATH') or die('Access denied.'); ?>
-<div class="row" id="wpcivicrm-datatable-columnsetting">
+<div class="row hidden" id="wpcivicrm-datatable-columnsetting">
     <div class="col-sm-6">
       <h4 class="c-title-color m-b-2"><?php _e('Content Replacement', 'wpcivicrm-datatable'); ?></h4>
       <div class="form-group">
@@ -34,8 +34,12 @@
       // When the #wd-table-id content is changed we know the table config has been load
       // and now it is time to apply our changes which is basically copying the civicrm_columns.
       $('body').on('DOMSubtreeModified', '#wdt-table-id', function() {
-        if (wpdatatable_config.civicrm_columns === undefined) {
-          wpdatatable_config.civicrm_columns = wpdatatable_init_config.civicrm_columns;
+        if (typeof(wpdatatable_config.civicrm_columns) === 'undefined') {
+          if (typeof (wpdatatable_init_config) === 'undefined' || typeof (wpdatatable_init_config.civicrm_columns) === 'undefined') {
+            wpdatatable_config.civicrm_columns = [];
+          } else {
+            wpdatatable_config.civicrm_columns = wpdatatable_init_config.civicrm_columns;
+          }
         }
       });
 
@@ -94,7 +98,10 @@
         }
       });
 
-      $('#wpcivicrm-datatable-columnsetting').appendTo('#column-display-settings');
+      if ($('#column-display-settings')) {
+        $('#wpcivicrm-datatable-columnsetting').appendTo('#column-display-settings');
+        $('#wpcivicrm-datatable-columnsetting').removeClass('hidden');
+      }
     });
 })(jQuery);
 </script>
