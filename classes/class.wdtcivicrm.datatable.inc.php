@@ -76,8 +76,8 @@ class WPCivicrm_Datatable {
       $config->filters = array();
     }
     foreach($config->filters as $filter) {
-      if (isset($_GET[$filter['name']])) {
-        $api_params[$filter] = $_GET[$filter['name']];
+      if (isset($_GET[$filter])) {
+        $api_params[$filter] = $_GET[$filter];
       }
     }
     if (!isset($config->columns)) {
