@@ -106,12 +106,19 @@ class WPCivicrm_Datatable {
     do_action('wpcivicrm_datatable_api_params', [$api_params, $config, $data_table, $datatable_params]);
     $reply = wpcivicrm_datatable_api($config->entity, $config->action, $api_params, $options, $config->profile);
     $data = array();
-    foreach($reply['values'] as $row) {
-      $row = array_merge($defaults, $row);
-      $data[] = $row;
+    if (isset($reply['values']) && is_array($reply['values'])) {
+      foreach ($reply['values'] as $row) {
+        $row = array_merge($defaults, $row);
+        $data[] = $row;
+      }
     }
     $data = apply_filters('wpcivicrm_datatable_alter_data', $data, $data_table);
     $data_table->arrayBasedConstruct($data, $datatable_params);
+    // Set no data to false to prevent error popping up when civicrm returns no data.
+    // This caused be caused by required filters.
+    if (empty($data)) {
+      $data_table->setNoData(FALSE);
+    }
   }
 
   /**
