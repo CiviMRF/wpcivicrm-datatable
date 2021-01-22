@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: CiviCRM wpDataTables integration.
-Description: Provides a way to load civicrm data into wpDataTables.
+Plugin Name: Data source CiviCRM api for wpDataTable
+Description: Provides a CiviCRM api data source for wpDataTable plugin. You can use this plugin with Connector to CiviCRM with CiviMcRestFace (https://wordpress.org/plugins/connector-civicrm-mcrestface/)
 Version:     20180716
 Author:      Jaap Jansma
 License:     AGPL3
