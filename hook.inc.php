@@ -27,7 +27,7 @@ add_action('wpcivicrm_datatable_api_params', function($api_params, $config, WPDa
   $api_params['contact_id'] = $user->ID;
 }, 10, 4);
 
-add_filter('cf_civicrm_formprocessor_get_profiles', function($profiles) {
+add_filter('wpcivicrm_datatable_get_profiles', function($profiles) {
   $profiles['my_profile_type'] = [
     'function' => 'my_profile_type_api_function', // See below for an example
     'profile_id' => false, // Fill in an additional profile id if needed
