@@ -36,7 +36,7 @@ function wpcivicrm_datatable_get_profiles() {
   $profiles = WPCivicrm_Datatable_Local::profiles($profiles);
   $profiles = WPCivicrm_Datatable_Wpcmrf::profiles($profiles);
 
-  $profiles = apply_filters('cf_civicrm_formprocessor_get_profiles', $profiles);
+  $profiles = apply_filters('wpcivicrm_datatable_get_profiles', $profiles);
   return $profiles;
 }
 
